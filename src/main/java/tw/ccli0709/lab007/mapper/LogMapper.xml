@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tw.ccli0709.lab007.dao.LogMapper">
+	<resultMap id="BaseResultMap"
+		type="tw.ccli0709.lab007.entity.Log">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from log
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="tw.ccli0709.lab007.entity.Log">
+		insert into log (create_time, content
+		)
+		values (
+		#{createTime,jdbcType=TIMESTAMP},
+		#{content,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="tw.ccli0709.lab007.entity.Log">
+		update log
+		set create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		content = #{content,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select id, create_time, content
+		from log
+		where id =
+		#{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, create_time, content
+		from log
+	</select>
+</mapper>
